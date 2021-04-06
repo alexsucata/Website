@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Page</title>
+</head>
+<body>
+<h1 th:text="#{index.label}"></h1>
+<span th:text="${myName}"></span>
+<br>
+<p th:text="${myCity}"></p>
+<hr>
+<table>
+    <tr>
+        <th>id</th>
+        <th th:text="#{index.table.header.description}"></th>
+        <th>name</th>
+        <th>price</th>
+        <th>quantity</th>
+    </tr>
+    <!--<tr>
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+    </tr>-->
+    <tr th:each="product:${products}">
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+    </tr>
+</table>
+<hr>
+<div th:if="${isLoggedIn}">
+ Welcome, Alex!
+</div>
+<div th:unless="${isLoggedIn}">
+   Please, log in!
+</div>
+<hr>
+<p th:switch="${floor}">
+   <span th:case="1">First floor</span>
+    <span th:case="2">Second floor</span>
+    <span th:case="*">Unknown floor</span>
+</p>
+</body>
+</html>

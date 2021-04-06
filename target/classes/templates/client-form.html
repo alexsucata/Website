@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/web/client/save" th:object="${clientObject}">
+
+    <input type="hidden" name="clientId" th:field="*{clientId}"><br>
+    <input type="text" name="name" th:field="*{name}"><br>
+    <input type="text" name="address" th:field="*{address}"><br>
+    <input type="text" name="country" th:field="*{country}"><br>
+    <input type="text" name="phone" th:field="*{phone}"><br>
+
+    <input type="submit">
+
+</form>
+</body>
+</html>
