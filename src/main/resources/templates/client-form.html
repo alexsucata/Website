@@ -5,16 +5,36 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/web/client/save" th:object="${clientObject}">
 
-    <input type="hidden" name="clientId" th:field="*{clientId}"><br>
-    <input type="text" name="name" th:field="*{name}"><br>
-    <input type="text" name="address" th:field="*{address}"><br>
-    <input type="text" name="country" th:field="*{country}"><br>
-    <input type="text" name="phone" th:field="*{phone}"><br>
+<div>
+    <h1>Add client form</h1>
+    <form method="post" action="/web/client/save" th:object="${clientObject}">
 
-    <input type="submit">
+        <input type="hidden" name="clientId" th:field="*{clientId}"><br>
 
-</form>
+        <span th:if="${#fields.hasErrors('name')}" th:each="err:${#fields.errors('name')}" th:text="${err}"></span>
+        <label for="name">Name</label>
+        <input type="text" name="name" th:field="*{name}" id="name"><br>
+
+        <span th:if="${#fields.hasErrors('address')}" th:each="err:${#fields.errors('address')}"
+              th:text="${err}"></span>
+        <label for="address">Address</label>
+        <input type="text" name="address" th:field="*{address}" id="address"><br>
+
+        <span th:if="${#fields.hasErrors('country')}" th:each="err:${#fields.errors('country')}"
+              th:text="${err}"></span>
+        <label for="country">Country</label>
+        <input type="text" name="country" th:field="*{country}" id="country"><br>
+
+        <span th:if="${#fields.hasErrors('phone')}" th:each="err:${#fields.errors('phone')}" th:text="${err}"></span>
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" th:field="*{phone}" id="phone"><br>
+
+        <input type="submit">
+
+    </form>
+    <a href="/web/client/list">Back to client List</a>
+</div>
+
 </body>
 </html>

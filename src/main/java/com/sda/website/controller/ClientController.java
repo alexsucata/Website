@@ -3,12 +3,16 @@ package com.sda.website.controller;
 import com.sda.website.entity.ClientEntity;
 import com.sda.website.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class ClientController {
@@ -26,9 +30,14 @@ public class ClientController {
     }
 
     @PostMapping("/web/client/save")
-    public ModelAndView saveClient(@ModelAttribute("clientObject") ClientEntity clientEntity) {
+    public ModelAndView saveClient(@Valid @ModelAttribute("clientObject") ClientEntity clientEntity, BindingResult bindingResult) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/web/client/list");
+        if (bindingResult.hasErrors()){
+            modelAndView.setViewName("client-form");
+            modelAndView.addObject("clientObject", clientEntity);
+            return modelAndView;
+        }
         clientRepository.save(clientEntity);
         return modelAndView;
     }
@@ -54,5 +63,6 @@ public class ClientController {
         clientRepository.deleteById(clientId);
         return modelAndView;
     }
+
 
 }

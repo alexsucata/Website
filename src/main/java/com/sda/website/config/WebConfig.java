@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -41,4 +42,10 @@ public class WebConfig implements WebMvcConfigurer {
         return messageSource;
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //http://localhost:8080/css/main.css se mapeaza in resources/static/css/main.css
+        //http://localhost:8080/css/module/main.css se mapeaza in resources/static/css/module/main.css
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+    }
 }

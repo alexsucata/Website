@@ -16,13 +16,18 @@ public class ClientEntity {
     @NotBlank(message = "Name can not be blank")
     private String name;
 
-    @NotBlank(message = "Address can noy be blank")
-    @Pattern(regexp = "[a-z, A-Z, 0-9]*",message = "")
+    @NotBlank(message = "Address can not be blank")
+    @Pattern(regexp = "[a-z, A-Z, 0-9]*",message = "Address contains forbidden characters")
     private String address;
 
+    @NotBlank(message = "Phone can not be blank")
     private String phone;
 
-    private String city;
+    @ManyToOne
+    @JoinColumn(name = "cityId")
+    private CityEntity city;
+
+    @NotBlank(message = "Country can not be blank")
     private String country;
 
     @OneToMany(mappedBy = "client")
@@ -60,11 +65,11 @@ public class ClientEntity {
         this.phone = phone;
     }
 
-    public String getCity() {
+    public CityEntity getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(CityEntity city) {
         this.city = city;
     }
 
