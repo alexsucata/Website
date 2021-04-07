@@ -1,50 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="format-detection" content="telephone=yes"/>
+    <meta name="author" content="Alex Sucata"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}">
     <title>My First Page</title>
+
 </head>
 <body>
-<h1 th:text="#{index.label}"></h1>
-<span th:text="${myName}"></span>
-<br>
-<p th:text="${myCity}"></p>
-<hr>
-<table>
-    <tr>
-        <th>id</th>
-        <th th:text="#{index.table.header.description}"></th>
-        <th>name</th>
-        <th>price</th>
-        <th>quantity</th>
-    </tr>
-    <!--<tr>
-        <td th:text="${product.productId}"></td>
-        <td th:text="${product.description}"></td>
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.quantity}"></td>
-    </tr>-->
-    <tr th:each="product:${products}">
-        <td th:text="${product.productId}"></td>
-        <td th:text="${product.description}"></td>
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.quantity}"></td>
-    </tr>
-</table>
-<hr>
-<div th:if="${isLoggedIn}">
- Welcome, Alex!
+<div class="container">
+    <h1 th:text="#{index.label}"></h1>
+    <p th:text="${myName}"></p>
+    <p th:text="${myCity}"></p>
+
+    <div th:if="${isLoggedIn}">
+
+        <p>Welcome </p>
+
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th th:text="#{index.table.header.description}"></th>
+                <th th:text="#{index.table.header.name}"></th>
+                <th th:text="#{index.table.header.price}"></th>
+                <th th:text="#{index.table.header.quantity}"></th>
+                <th th:text="#{index.table.header.category}"></th>
+            </tr>
+            <!--<tr>
+                <td th:text="${product.productId}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.category.name}"></td>
+
+            </tr>-->
+            <tr th:each="product:${products}">
+                <td th:text="${product.productId}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.category.name}"></td>
+            </tr>
+
+        </table>
+    </div>
+    <div th:unless="${isLoggedIn}">
+        <p>Please login</p>
+    </div>
+
+    <hr>
+
+    <p th:switch="${floor}">
+        <span th:case="1">Etajul 1</span>
+        <span th:case="2">Etajul 2</span>
+        <span th:case="*">Etaj necunoscut</span>
+    </p>
+
+    <hr>
+    <select>
+        <option th:each="category:${categories}" th:value="${category.categoryId}"
+                th:text="${category.name}" th:selected="${category.categoryId==3}"></option>
+    </select>
+
+
 </div>
-<div th:unless="${isLoggedIn}">
-   Please, log in!
-</div>
-<hr>
-<p th:switch="${floor}">
-   <span th:case="1">First floor</span>
-    <span th:case="2">Second floor</span>
-    <span th:case="*">Unknown floor</span>
-</p>
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+<a href="http://localhost:8080/web/client/list"> <button>client list</button></a>
+
+<a href="http://localhost:8080/web/product/list"><button>product list</button></a>
+
 </body>
 </html>

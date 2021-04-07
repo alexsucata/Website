@@ -21,7 +21,7 @@ public class IndexController {
         modelAndView.addObject("myCity", "Rosu");
         //modelAndView.addObject("product", productRepository.findById(1).get());
         modelAndView.addObject("products", productRepository.findAll());
-        modelAndView.addObject("isLoggedIn", false);
+        modelAndView.addObject("isLoggedIn", true);
         modelAndView.addObject("floor", Integer.valueOf(floorParam));
 
         return modelAndView;

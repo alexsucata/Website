@@ -84,4 +84,17 @@ public class ProductEntity {
     public void setOrders(List<OrderEntity> orders) {
         this.orders = orders;
     }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", category=" + category +
+                ", orders=" + orders +
+                '}';
+    }
 }

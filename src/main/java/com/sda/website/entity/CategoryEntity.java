@@ -1,7 +1,11 @@
 package com.sda.website.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,10 +15,15 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
+    @Size(min = 3,max = 20,message = "Name must be between 3 and 20 chars")
+    @NotBlank(message = "Name can not be blank")
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    @OneToMany (mappedBy = "category")
     private List<ProductEntity> products;
+
+
 
     public Integer getCategoryId() {
         return categoryId;
@@ -38,5 +47,13 @@ public class CategoryEntity {
 
     public void setProducts(List<ProductEntity> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryEntity{" +
+                "categoryId=" + categoryId +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

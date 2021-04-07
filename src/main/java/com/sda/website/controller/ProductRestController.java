@@ -6,6 +6,7 @@ import com.sda.website.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class ProductRestController {
     }
 
     @PostMapping("/products/add")
-    public ProductEntity addNewProduct(@RequestBody ProductEntity productEntity) {
+    public ProductEntity addNewProduct(@Valid @RequestBody ProductEntity productEntity) {
         return productRepository.save(productEntity);
     }
 
