@@ -24,6 +24,7 @@
             <td th:text="${client.address}"></td>
             <td th:text="${client.country}"></td>
             <td th:text="${client.phone}"></td>
+
             <td>
                 <a th:href="@{${'/web/client/edit/' + client.clientId}}">Edit</a>
                 <a th:href="@{${'/web/client/delete/' + client.clientId}}">Delete</a>

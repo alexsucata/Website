@@ -54,7 +54,7 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping("/web/product/delete/{productId")
+    @GetMapping("/web/product/delete/{productId}")
     public ModelAndView deleteProduct (@PathVariable Integer productId){
         ModelAndView modelAndView = new ModelAndView("redirect:/web/product/list");
         productRepository.deleteById(productId);

@@ -7,6 +7,7 @@
 <body>
 
 <div>
+    <h1>Products List</h1>
     <table>
         <tr>
             <th>Id</th>
@@ -25,8 +26,8 @@
             <td th:text="${product.category.name}"></td>
 
             <td>
-                <a th:href="@{${'web/product/edit' + product.productId}}">Edit</a>
-                <a th:href="@{${'web/product/delete' + product.productId}}">Delete</a>
+                <a th:href="@{${'/web/product/edit/' + product.productId}}">Edit</a>
+                <a th:href="@{${'/web/product/delete/' + product.productId}}">Delete</a>
             </td>
         </tr>
     </table>

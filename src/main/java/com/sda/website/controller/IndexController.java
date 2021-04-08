@@ -1,6 +1,7 @@
 package com.sda.website.controller;
 
 
+import com.sda.website.repository.CategoryRepository;
 import com.sda.website.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class IndexController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @GetMapping("/web/index")
     public ModelAndView getIndex(@RequestParam(name = "floor", defaultValue = "0") String floorParam) {
         ModelAndView modelAndView = new ModelAndView("index");
@@ -23,6 +27,7 @@ public class IndexController {
         modelAndView.addObject("products", productRepository.findAll());
         modelAndView.addObject("isLoggedIn", true);
         modelAndView.addObject("floor", Integer.valueOf(floorParam));
+        modelAndView.addObject("categories", categoryRepository.findAll());
 
         return modelAndView;
     }

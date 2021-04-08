@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Client Form</title>
 </head>
 <body>
 
@@ -20,8 +20,7 @@
         <label for="address">Address</label>
         <input type="text" name="address" th:field="*{address}" id="address"><br>
 
-        <span th:if="${#fields.hasErrors('country')}" th:each="err:${#fields.errors('country')}"
-              th:text="${err}"></span>
+        <span th:if="${#fields.hasErrors('country')}" th:each="err:${#fields.errors('country')}" th:text="${err}"></span>
         <label for="country">Country</label>
         <input type="text" name="country" th:field="*{country}" id="country"><br>
 
@@ -32,6 +31,7 @@
         <input type="submit">
 
     </form>
+
     <a href="/web/client/list">Back to client List</a>
 </div>
 
