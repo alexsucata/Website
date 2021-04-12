@@ -16,6 +16,9 @@ public class ProductEntity {
     private String description;
     private Integer quantity;
 
+    @Column(insertable = false, updatable = false) //ignora si la insert si la update
+    private Integer categoryId;
+
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
